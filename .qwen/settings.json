@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx *)",
+      "Bash(del *)",
+      "Bash(rmdir *)",
+      "Bash(timeout *)",
+      "Bash(type *)",
+      "Bash(dir *)",
+      "Bash(node *)"
+    ]
+  },
+  "$version": 4
+}

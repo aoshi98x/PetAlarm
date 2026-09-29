@@ -1,16 +1,18 @@
 {
   "expo": {
-    "name": "CatAlarm",
-    "slug": "CatAlarm",
+    "name": "Pet Alarm",
+    "slug": "pet-alarm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "catalarm",
+    "scheme": "petalarm",
     "userInterfaceStyle": "automatic",
     "ios": {
+      "bundleIdentifier": "com.ColombianApps.PetAlarm",
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.ColombianApps.PetAlarm",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -28,15 +30,24 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#FBF3EE",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      "expo-sharing",
+      "@react-native-community/datetimepicker",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4dc8a598-a864-43ee-8370-07918661e6c2"
+      }
     }
   }
 }
