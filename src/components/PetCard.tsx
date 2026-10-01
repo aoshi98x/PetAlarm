@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
     backgroundColor: '#FFFFFF',
-    borderColor: '#EAE7E1',
+    borderColor: '#EFEFEF',
     borderWidth: 1,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.04,
-    shadowRadius: 8,
+    shadowRadius: 6,
   },
   accentBorder: {
     position: 'absolute',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     width: 4,
-    backgroundColor: '#5B9B75',
+    backgroundColor: '#56936E',
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
   },
@@ -95,11 +95,11 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: '700',
     fontSize: 18,
-    color: '#2D3748',
+    color: '#1F2937',
   },
   ageBadge: {
     alignSelf: 'flex-start',
-    backgroundColor: '#E8F3ED',
+    backgroundColor: '#E8F5EC',
     borderRadius: 12,
     paddingHorizontal: 10,
     paddingVertical: 3,
@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
   ageBadgeText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#5B9B75',
+    color: '#56936E',
   },
 });

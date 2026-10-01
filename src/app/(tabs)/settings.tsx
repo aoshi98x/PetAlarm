@@ -60,7 +60,7 @@ export default function SettingsScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenContainer backgroundColor="#FDFBF7">
+      <ScreenContainer backgroundColor="#FAF9F6">
         <AppHeader
           title="Ajustes y Datos"
           subtitle="Tus datos se guardan únicamente en este dispositivo"
@@ -78,9 +78,10 @@ export default function SettingsScreen() {
             <Button
               mode="contained"
               icon="export-variant"
-              buttonColor="#5B9B75"
+              buttonColor="#56936E"
               textColor="#FFFFFF"
               style={styles.actionButton}
+              contentStyle={{ height: 50 }}
               onPress={handleExport}
               loading={busy}
               disabled={busy}>
@@ -150,51 +151,54 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#FDFBF7',
+    backgroundColor: '#FAF9F6',
   },
   cardSection: {
     gap: spacing.md,
     borderRadius: 20,
     backgroundColor: '#FFFFFF',
-    borderColor: '#EAE7E1',
+    borderColor: '#EFEFEF',
     borderWidth: 1,
     padding: spacing.lg,
     marginTop: spacing.md,
-    elevation: 1,
+    elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.03,
-    shadowRadius: 6,
+    shadowOpacity: 0.04,
+    shadowRadius: 4,
   },
   dangerSection: {
-    borderColor: '#FED7D7',
+    borderColor: '#FEE2E2',
     backgroundColor: '#FFF5F5',
     marginTop: spacing.xl,
   },
   sectionTitle: {
     fontWeight: '700',
-    color: '#2D3748',
+    color: '#1F2937',
+    fontSize: 18,
   },
   sectionDescription: {
-    color: '#718096',
+    color: '#6B7280',
     lineHeight: 20,
+    fontSize: 14,
   },
   dangerDescription: {
-    color: '#9B2C2C',
+    color: '#991B1B',
     lineHeight: 18,
+    fontSize: 14,
   },
   buttonGroup: {
     gap: spacing.sm,
     marginTop: spacing.xs,
   },
   actionButton: {
-    borderRadius: 14,
+    borderRadius: 25,
   },
   outlinedButton: {
-    borderColor: '#5B9B75',
+    borderColor: '#56936E',
   },
   dangerButton: {
-    borderRadius: 14,
+    borderRadius: 25,
     borderColor: '#FEB2B2',
   },
 });

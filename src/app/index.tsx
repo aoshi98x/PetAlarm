@@ -1,5 +1,5 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Image, StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -8,7 +8,7 @@ import { Button, Text } from 'react-native-paper';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { spacing } from '@/theme/theme';
 
-const WELCOME_KEY = '@catalarm/seenWelcome';
+const WELCOME_KEY = '@petalarm/seenWelcome';
 const HERO_IMAGE = require('../../assets/images/welcome-hero.png');
 
 export default function WelcomeScreen() {
@@ -36,7 +36,7 @@ export default function WelcomeScreen() {
 
   const handleContinue = async () => {
     await AsyncStorage.setItem(WELCOME_KEY, 'true');
-    router.replace('/(tabs)');
+    router.replace('/caregiver');
   };
 
   if (!ready) {
@@ -51,7 +51,7 @@ export default function WelcomeScreen() {
     <ScreenContainer
       scroll
       padded={false}
-      backgroundColor="#FDFBF7"
+      backgroundColor="#FAF9F6"
       edges={['top', 'bottom', 'left', 'right']}
       contentStyle={styles.scrollContent}>
       <View style={styles.mainContainer}>
@@ -140,20 +140,20 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 19,
-    backgroundColor: '#5B9B75',
+    backgroundColor: '#56936E',
     alignItems: 'center',
     justifyContent: 'center',
   },
   brandTitle: {
     fontSize: 30,
     fontWeight: '800',
-    color: '#202325',
+    color: '#1F2937',
     letterSpacing: -0.5,
   },
   heading: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#4E555C',
+    fontWeight: '700',
+    color: '#374151',
     textAlign: 'center',
     marginBottom: spacing.sm,
     letterSpacing: -0.2,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14.5,
     lineHeight: 22,
-    color: '#8E959E',
+    color: '#6B7280',
     textAlign: 'center',
     fontWeight: '400',
   },
@@ -173,10 +173,13 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     maxWidth: 380,
-    borderRadius: 28,
-    backgroundColor: '#5B9B75',
-    elevation: 0,
-    shadowColor: 'transparent',
+    borderRadius: 30,
+    backgroundColor: '#56936E',
+    shadowColor: '#56936E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 4,
   },
   buttonContent: {
     height: 56,

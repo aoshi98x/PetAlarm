@@ -1,127 +1,211 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { useData } from '@/data/DataContext';
 import { spacing } from '@/theme/theme';
 
 export default function ProfileScreen() {
+  const { data } = useData();
+
+  const handleBack = () => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/(tabs)');
+    }
+  };
 
   return (
-    <ScreenContainer backgroundColor="#FDFBF7">
-      {/* ─── Header ─── */}
+    <ScreenContainer backgroundColor="#FAF9F6">
+      {/* ─── Header Navigation ─── */}
+      <View style={styles.navHeader}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={handleBack}
+          accessibilityLabel="Volver"
+          activeOpacity={0.7}>
+          <MaterialCommunityIcons name="arrow-left" size={22} color="#1F2937" />
+        </TouchableOpacity>
+        <Text style={styles.navTitle}>Mi Perfil</Text>
+      </View>
+
+      {/* ─── Profile Header ─── */}
       <View style={styles.header}>
-        <View style={styles.avatarLarge}>
-          <MaterialCommunityIcons name="account" size={48} color="#5B9B75" />
-        </View>
-        <Text variant="headlineSmall" style={styles.name}>
-          María
+        {data.caregiver?.photoUri ? (
+          <View style={styles.avatarWrapper}>
+            <Image source={{ uri: data.caregiver.photoUri }} style={styles.avatarImage} />
+          </View>
+        ) : (
+          <View style={styles.avatarLarge}>
+            <MaterialCommunityIcons name="account" size={54} color="#56936E" />
+          </View>
+        )}
+        <Text style={styles.name}>
+          {data.caregiver?.name || 'Cuidador'}
         </Text>
-        <Text variant="bodyMedium" style={styles.email}>
-          Dueña de mascotas 🐾
+        <Text style={styles.email}>
+          Dueño de {data.caregiver?.numberOfPets || '0'} peludito{data.caregiver?.numberOfPets === '1' ? '' : 's'} 🐾
         </Text>
       </View>
 
       {/* ─── Menu Items ─── */}
       <View style={styles.menu}>
-        <MenuItem icon="account-edit-outline" label="Editar perfil" />
+        <MenuItem
+          icon="account-edit-outline"
+          label="Editar perfil"
+          onPress={() => router.push('/caregiver')}
+        />
+        <View style={styles.divider} />
         <MenuItem icon="bell-outline" label="Notificaciones" />
+        <View style={styles.divider} />
         <MenuItem icon="shield-check-outline" label="Privacidad" />
+        <View style={styles.divider} />
         <MenuItem icon="help-circle-outline" label="Ayuda y soporte" />
+        <View style={styles.divider} />
         <MenuItem icon="information-outline" label="Acerca de PetCare" />
-      </View>
-
-      {/* ─── Back link ─── */}
-      <View style={styles.backWrapper}>
-        <Text
-          style={styles.backLink}
-          onPress={() => {
-            if (router.canGoBack()) {
-              router.back();
-            } else {
-              router.replace('/(tabs)');
-            }
-          }}>
-          ← Volver al inicio
-        </Text>
       </View>
     </ScreenContainer>
   );
 }
 
-function MenuItem({ icon, label }: { icon: string; label: string }) {
+function MenuItem({ icon, label, onPress }: { icon: string; label: string; onPress?: () => void }) {
   return (
-    <View style={styles.menuItem}>
+    <Pressable
+      style={({ pressed }) => [styles.menuItem, pressed && styles.menuItemPressed]}
+      onPress={onPress}>
       <View style={styles.menuIconCircle}>
-        <MaterialCommunityIcons name={icon as any} size={20} color="#5B9B75" />
+        <MaterialCommunityIcons name={icon as any} size={20} color="#56936E" />
       </View>
-      <Text variant="bodyLarge" style={styles.menuLabel}>
+      <Text style={styles.menuLabel}>
         {label}
       </Text>
-      <MaterialCommunityIcons name="chevron-right" size={20} color="#C0BDB8" />
-    </View>
+      <MaterialCommunityIcons name="chevron-right" size={22} color="#A0AEC0" />
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
+  /* ─── Top Nav ─── */
+  navHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+    marginTop: 4,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+    borderWidth: 1,
+    borderColor: '#EFEFEF',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  navTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#1F2937',
+    letterSpacing: -0.3,
+  },
   /* ─── Header ─── */
   header: {
     alignItems: 'center',
-    paddingVertical: spacing.xxl,
+    paddingVertical: spacing.xl,
     gap: spacing.xs,
   },
+  avatarWrapper: {
+    width: 104,
+    height: 104,
+    borderRadius: 52,
+    borderWidth: 2,
+    borderColor: '#E7EAE6',
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 4,
+    elevation: 1,
+  },
+  avatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
   avatarLarge: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
+    width: 104,
+    height: 104,
+    borderRadius: 52,
     backgroundColor: '#E8F5EC',
+    borderWidth: 2,
+    borderColor: '#E7EAE6',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.sm,
   },
   name: {
     fontWeight: '700',
-    color: '#202325',
+    fontSize: 22,
+    color: '#1F2937',
   },
   email: {
-    color: '#8E959E',
+    color: '#6B7280',
+    fontSize: 14,
+    fontWeight: '500',
   },
   /* ─── Menu ─── */
   menu: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 18,
-    paddingVertical: spacing.xs,
-    marginTop: spacing.md,
+    borderRadius: 20,
+    marginTop: spacing.sm,
+    borderWidth: 1,
+    borderColor: '#EFEFEF',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 4,
+    elevation: 2,
+    overflow: 'hidden',
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: spacing.lg,
-    paddingVertical: 14,
+    paddingVertical: 15,
     gap: spacing.md,
   },
+  menuItemPressed: {
+    backgroundColor: '#F9FAFB',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#F3F4F6',
+    marginLeft: 68,
+  },
   menuIconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#F3FAF5',
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: '#E8F5EC',
     alignItems: 'center',
     justifyContent: 'center',
   },
   menuLabel: {
     flex: 1,
-    color: '#3A3D40',
-    fontWeight: '500',
-  },
-  /* ─── Back ─── */
-  backWrapper: {
-    alignItems: 'center',
-    marginTop: spacing.xxl,
-  },
-  backLink: {
-    color: '#5B9B75',
+    color: '#1F2937',
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: 15,
   },
 });

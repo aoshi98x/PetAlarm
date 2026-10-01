@@ -14,6 +14,7 @@ import { makeId } from '@/utils/id';
 import {
   emptyData,
   type AppData,
+  type Caregiver,
   type FeedingInput,
   type MedicationInput,
   type Pet,
@@ -29,6 +30,7 @@ interface DataContextValue {
   data: AppData;
   /** True once the initial load from AsyncStorage has finished. */
   ready: boolean;
+  saveCaregiver: (caregiver: Caregiver) => void;
   addPet: (input: PetInput) => Pet;
   updatePet: (id: string, patch: Partial<PetInput>) => void;
   removePet: (id: string) => void;
@@ -80,6 +82,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
     const pet: Pet = { ...input, id: makeId(), createdAt: new Date().toISOString() };
     setData((d) => ({ ...d, pets: [pet, ...d.pets] }));
     return pet;
+  }, []);
+
+  const saveCaregiver = useCallback((caregiver: Caregiver) => {
+    setData((d) => ({ ...d, caregiver }));
   }, []);
 
   const updatePet = useCallback((id: string, patch: Partial<PetInput>) => {
@@ -156,6 +162,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     () => ({
       data,
       ready,
+      saveCaregiver,
       addPet,
       updatePet,
       removePet,
@@ -173,6 +180,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     [
       data,
       ready,
+      saveCaregiver,
       addPet,
       updatePet,
       removePet,

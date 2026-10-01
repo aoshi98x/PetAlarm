@@ -1,13 +1,29 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx *)",
-      "Bash(del *)",
-      "Bash(rmdir *)",
-      "Bash(timeout *)",
-      "Bash(type *)",
+      "Bash(get-childitem *)",
+      "Bash(where-object *)",
+      "Bash(group-object *)",
+      "Bash(foreach-object *)",
+      "Bash((($_ *)",
+      "Bash(measure-object *)",
+      "Bash(sort-object *)",
+      "Bash(format-table *)",
+      "Bash(out-string *)",
+      "Bash(select-object *)",
       "Bash(dir *)",
-      "Bash(node *)"
+      "Bash(git *)",
+      "Bash(findstr *)",
+      "Bash($r='d:\\proyectos\\mobile\\petalarm\\node_modules')",
+      "Bash($s=)",
+      "Bash('{0:n0} mb total')",
+      "Bash($x/1mb,1)",
+      "Bash(} })",
+      "Bash(node *)",
+      "Bash(npm ls *)",
+      "Bash(npx *)",
+      "Bash(npm run *)",
+      "Bash(del *)"
     ]
   },
   "$version": 4

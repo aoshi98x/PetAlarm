@@ -210,10 +210,11 @@ export function PetForm({ initial, onSubmit, submitLabel = 'Guardar' }: PetFormP
       <Button
         mode="contained"
         icon="check"
-        buttonColor="#5B9B75"
+        buttonColor="#56936E"
         textColor="#FFFFFF"
         onPress={handleSubmit}
-        style={styles.submit}>
+        style={styles.submit}
+        contentStyle={{ height: 54 }}>
         {submitLabel}
       </Button>
     </View>
@@ -226,13 +227,15 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#FFFFFF',
+    borderRadius: 14,
   },
   fieldGroup: {
     gap: spacing.xs,
   },
   fieldLabel: {
-    color: '#2D3748',
+    color: '#374151',
     fontWeight: '600',
+    fontSize: 15,
   },
   chipRow: {
     flexDirection: 'row',
@@ -255,13 +258,18 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 18,
-    backgroundColor: '#F5F2EB',
-    borderColor: '#EAE7E1',
+    backgroundColor: '#FAF9F6',
+    borderColor: '#E5E7EB',
     borderWidth: 1,
   },
   submit: {
-    marginTop: spacing.sm,
-    borderRadius: 14,
-    paddingVertical: 4,
+    marginTop: spacing.md,
+    borderRadius: 30,
+    backgroundColor: '#56936E',
+    shadowColor: '#56936E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 4,
   },
 });

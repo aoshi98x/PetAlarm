@@ -2,6 +2,16 @@ export type Species = 'dog' | 'cat';
 export type Sex = 'male' | 'female';
 export type FoodType = 'dry' | 'wet' | 'homemade' | 'other';
 
+export interface Caregiver {
+  name: string;
+  age?: string;
+  birthDate?: string;
+  numberOfPets?: string;
+  address?: string;
+  photoUri?: string;
+}
+
+
 export interface Pet {
   id: string;
   name: string;
@@ -67,6 +77,7 @@ export interface VisitRecord {
 
 export interface AppData {
   version: number;
+  caregiver?: Caregiver;
   pets: Pet[];
   feedings: FeedingRecord[];
   vaccinations: VaccinationRecord[];
@@ -79,6 +90,7 @@ export const DATA_VERSION = 1;
 export function emptyData(): AppData {
   return {
     version: DATA_VERSION,
+    caregiver: undefined,
     pets: [],
     feedings: [],
     vaccinations: [],

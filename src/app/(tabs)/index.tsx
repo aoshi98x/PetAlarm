@@ -1,13 +1,13 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View, Image } from 'react-native';
 import { ActivityIndicator, FAB, Text, TextInput, useTheme } from 'react-native-paper';
 
 import { EmptyState } from '@/components/EmptyState';
 import { PetCard } from '@/components/PetCard';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { useData } from '@/data/DataContext';
-import { radius, spacing } from '@/theme/theme';
+import { spacing } from '@/theme/theme';
 
 export default function PetsScreen() {
   const { data, ready } = useData();
@@ -16,7 +16,7 @@ export default function PetsScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenContainer backgroundColor="#FDFBF7">
+      <ScreenContainer backgroundColor="#FAF9F6">
         {/* ─── Greeting Header ─── */}
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
@@ -24,14 +24,18 @@ export default function PetsScreen() {
               ¡Bienvenido de vuelta!
             </Text>
             <Text variant="headlineSmall" style={styles.headerName}>
-              Hola, María 👋
+              Hola, {data.caregiver?.name || 'Cuidador'} 👋
             </Text>
           </View>
           <Pressable
             onPress={() => router.push('/profile')}
             style={styles.avatarBtn}
             accessibilityLabel="Ir al perfil">
-            <MaterialCommunityIcons name="account" size={24} color="#5B9B75" />
+            {data.caregiver?.photoUri ? (
+              <Image source={{ uri: data.caregiver.photoUri }} style={{ width: 44, height: 44, borderRadius: 22 }} />
+            ) : (
+              <MaterialCommunityIcons name="account" size={24} color="#56936E" />
+            )}
           </Pressable>
         </View>
 
@@ -90,7 +94,7 @@ export default function PetsScreen() {
       <FAB
         icon="plus"
         onPress={() => router.push('/pet/new')}
-        style={[styles.fab, { backgroundColor: '#5B9B75' }]}
+        style={[styles.fab, { backgroundColor: '#56936E' }]}
         color="#FFFFFF"
       />
     </View>
@@ -112,35 +116,49 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting: {
-    color: '#8E959E',
+    color: '#6B7280',
     fontSize: 13,
     marginBottom: 2,
+    fontWeight: '500',
   },
   headerName: {
     fontWeight: '700',
-    fontSize: 22,
-    color: '#202325',
+    fontSize: 24,
+    color: '#1F2937',
+    letterSpacing: -0.3,
   },
   avatarBtn: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#E8F5EC',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: spacing.md,
+    borderWidth: 1,
+    borderColor: '#EFEFEF',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
   },
   /* ─── Search ─── */
   searchWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    borderRadius: radius.xl,
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#E8E3DD',
+    borderColor: '#E5E7EB',
     marginBottom: spacing.xl,
     paddingHorizontal: spacing.md,
-    height: 48,
+    height: 50,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.02,
+    shadowRadius: 2,
+    elevation: 1,
   },
   searchIcon: {
     marginRight: spacing.xs,
@@ -148,8 +166,8 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     backgroundColor: 'transparent',
-    fontSize: 14,
-    height: 48,
+    fontSize: 15,
+    height: 50,
   },
   searchContent: {
     paddingLeft: 0,
@@ -163,13 +181,13 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontWeight: '700',
-    color: '#202325',
-    fontSize: 17,
+    color: '#1F2937',
+    fontSize: 18,
   },
   sectionLink: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
-    color: '#5B9B75',
+    color: '#56936E',
   },
   /* ─── Content ─── */
   loading: {
@@ -186,5 +204,9 @@ const styles = StyleSheet.create({
     bottom: spacing.lg,
     borderRadius: 28,
     elevation: 4,
+    shadowColor: '#56936E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
   },
 });

@@ -7,10 +7,10 @@ import { MD3LightTheme, MD3DarkTheme, type MD3Theme } from 'react-native-paper';
  */
 export const palette = {
   // Brand
-  primary: '#5B9B75',
+  primary: '#56936E',
   onPrimary: '#FFFFFF',
-  primaryContainer: '#E8F3ED',
-  onPrimaryContainer: '#224B35',
+  primaryContainer: '#E8F5EC',
+  onPrimaryContainer: '#1C3E28',
 
   secondary: '#7FAECB',
   onSecondary: '#FFFFFF',
@@ -23,21 +23,21 @@ export const palette = {
   onTertiaryContainer: '#1C3A29',
 
   // Surfaces
-  background: '#FDFBF7',
-  onBackground: '#2D3748',
+  background: '#FAF9F6',
+  onBackground: '#1F2937',
   surface: '#FFFFFF',
-  onSurface: '#2D3748',
-  surfaceVariant: '#F5F2EB',
-  onSurfaceVariant: '#718096',
-  surfaceContainer: '#FFF9F4',
+  onSurface: '#1F2937',
+  surfaceVariant: '#F3F4F6',
+  onSurfaceVariant: '#6B7280',
+  surfaceContainer: '#FFFFFF',
 
-  outline: '#EAE7E1',
-  outlineVariant: '#F0EAE1',
+  outline: '#E5E7EB',
+  outlineVariant: '#EFEFEF',
 
-  error: '#D96C6C',
+  error: '#EF4444',
   onError: '#FFFFFF',
-  errorContainer: '#FFDAD6',
-  onErrorContainer: '#4E1A1A',
+  errorContainer: '#FEE2E2',
+  onErrorContainer: '#991B1B',
 
   // Record categories
   feeding: '#6FAE8F',
@@ -145,9 +145,33 @@ export const spacing = {
 export const radius = {
   sm: 10,
   md: 14,
-  lg: 18,
-  xl: 24,
+  lg: 16,
+  xl: 20,
   pill: 999,
+} as const;
+
+export const shadows = {
+  subtle: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.03,
+    shadowRadius: 3,
+    elevation: 1,
+  },
+  card: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  button: {
+    shadowColor: '#56936E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 4,
+  },
 } as const;
 
 export const maxContentWidth = 720;

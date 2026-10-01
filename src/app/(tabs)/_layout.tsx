@@ -1,25 +1,23 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { useTheme } from 'react-native-paper';
 
 import type { IconName } from '@/components/icons';
 
 export default function TabsLayout() {
-  const theme = useTheme();
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#5B9B75',
-        tabBarInactiveTintColor: theme.colors.onSurfaceVariant,
+        tabBarActiveTintColor: '#56936E',
+        tabBarInactiveTintColor: '#9CA3AF',
         tabBarStyle: {
           backgroundColor: '#FFFFFF',
-          borderTopColor: '#F0EBE5',
+          borderTopColor: '#EFEFEF',
           borderTopWidth: 1,
           elevation: 0,
           shadowOpacity: 0,
-          height: 60,
+          height: 62,
           paddingBottom: 8,
           paddingTop: 4,
         },
